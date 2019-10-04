@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bnet match:</strong>
+  <%= @match.bnet_match_id %>
+</p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @match.player.bnet_name %>
+</p>
+
+<p>
+  <strong>Opponent:</strong>
+  <%= @match.opponent.bnet_name %>
+</p>
+
+<p>
+  <strong>Winner:</strong>
+  <%= @match.player.bnet_name %>
+</p>
+
+<%= link_to 'Back', matches_path %>
