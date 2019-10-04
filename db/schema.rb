@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_10_04_000603) do
     t.integer "player_id"
     t.integer "opponent_id"
     t.integer "winner"
+    t.boolean "done", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

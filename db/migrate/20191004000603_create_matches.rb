@@ -5,6 +5,7 @@ class CreateMatches < ActiveRecord::Migration[6.0]
       t.integer :player_id
       t.integer :opponent_id
       t.integer :winner
+      t.boolean :done,            null: false, default: false
 
       t.timestamps
     end
