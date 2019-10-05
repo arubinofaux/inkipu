@@ -4,7 +4,7 @@ class ApiController < ApplicationController
   def pingMatch
     findMatch = Match.find_by_bnet_match_id_and_done(params["match"]["game"], true)
     if findMatch
-      logger.info "found one"
+      # compare new logs to current match data
     else
       player = nil
       opponent = nil

@@ -16,18 +16,17 @@ class User < ApplicationRecord
         email: "#{auth.uid}@TEMP-#{auth.provider}.com",
         password: Devise.friendly_token[0,20]
       )
-      Player.create(user_id: newUser.id, name: auth.info.battletag.split("#")[0], bnet_name: auth.info.battletag)
+      
+      # check if we have a player without a user
+      pp = Player.find_by_bnet_name(auth.info.battletag)
+      if pp && pp.user_id.nil?
+        pp.update(user_id: newUser.id)
+      else
+        Player.create(user_id: newUser.id, name: auth.info.battletag.split("#")[0], bnet_name: auth.info.battletag)
+      end
       return newUser
     else
       return pingUser
     end
-
-    # user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    #   user.provider = auth.provider
-    #   user.uid = auth.uid
-    #   user.email = "#{auth.uid}@TEMP-#{auth.provider}.com"
-    #   user.password = Devise.friendly_token[0,20]
-    # end
-    # Player.create(user_id: user.id, name: auth.info.battletag.split("#")[0], bnet_name: auth.info.battletag)
   end
 end
