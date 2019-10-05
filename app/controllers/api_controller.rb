@@ -2,14 +2,10 @@ class ApiController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
   def pingMatch
-    # logger.info params #["match"]["game"]
-
     findMatch = Match.find_by_bnet_match_id_and_done(params["match"]["game"], true)
     if findMatch
       logger.info "found one"
     else
-      logger.info "create it"
-      
       player = nil
       opponent = nil
       winner = nil
@@ -25,11 +21,14 @@ class ApiController < ApplicationController
         end
       end
 
-      players.each do |player|
-        user = User.find_by_bnet_name(player[:name])
-        winner = user.id if player[:status] == "WON"
-        player = user.id if player[:position] == "1"
-        opponent = user.id if player[:position] == "2"
+      players.each do |p|
+        bplayer = Player.find_by_bnet_name(p[:name])
+        if bplayer.blank?
+          bplayer = Player.create!(name: p[:name].split("#")[0], bnet_name: p[:name])
+        end
+        winner = bplayer.id if p[:status] == "WON"
+        player = bplayer.id if p[:position] == "1"
+        opponent = bplayer.id if p[:position] == "2"
       end
 
       Match.create!(
@@ -40,8 +39,6 @@ class ApiController < ApplicationController
         done: true
       )
     end
-
-    # logger.info findMatch.inspect
 
     render json: {}
   end
