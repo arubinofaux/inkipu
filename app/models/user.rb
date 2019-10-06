@@ -11,12 +11,12 @@ class User < ApplicationRecord
     pingUser = where(provider: auth.provider, uid: auth.uid).first
     if pingUser.blank?
       newUser = User.create(
-        provider: auth.uid,
+        provider: auth.provider,
         uid: auth.uid,
         email: "#{auth.uid}@TEMP-#{auth.provider}.com",
         password: Devise.friendly_token[0,20]
       )
-      
+
       # check if we have a player without a user
       pp = Player.find_by_bnet_name(auth.info.battletag)
       if pp && pp.user_id.nil?
