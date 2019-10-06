@@ -15,11 +15,11 @@
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <%= link_to 'InnKeepBattles', root_url, class: 'navbar-brand'%>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsHeader" aria-controls="navbarsHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <div class="collapse navbar-collapse" id="navbarsHeader">
         <ul class="navbar-nav mr-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
@@ -32,11 +32,12 @@
         </ul>        
         <ul class="navbar-nav">
           <% if user_signed_in? %>
-            <li class="nav-item text-nowrap">
-              <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item text-nowrap">
-              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>        
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownUserActions" data-toggle="dropdown"><%= current_user.player.bnet_name %></a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserActions">
+                <%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item' %>
+                <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+              </div>
             </li>
           <% else %>
             <li class="nav-item text-nowrap">
