@@ -2,45 +2,13 @@ class ApiController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
   def pingMatch
-    findMatch = Match.find_by_bnet_match_id_and_done(params["match"]["game"], true)
+    logger.info params.inspect
+    findMatch = Match.find_by_bnet_match_id(params["match"]["game"])
     if findMatch
       # compare new logs to current match data
     else
-      player = nil
-      opponent = nil
-      winner = nil
-
-      players = []
-      params["players"].each do |p|
-        if p["position"] == "1"
-          players[0] = {name: p["name"], position: p["position"], status: p["status"]}
-        end
-
-        if p["position"] == "2"
-          players[1] = {name: p["name"], position: p["position"], status: p["status"]}
-        end
-      end
-
-      players.each do |p|
-        bplayer = Player.find_by_bnet_name(p[:name])
-        if bplayer.blank?
-          bplayer = Player.create!(name: p[:name].split("#")[0], bnet_name: p[:name])
-        end
-        if p[:status] == "WON"
-          winner = bplayer.id
-          bplayer.update(wins: bplayer.wins + 1)
-        end
-        player = bplayer.id if p[:position] == "1"
-        opponent = bplayer.id if p[:position] == "2"
-      end
-
-      Match.create!(
-        bnet_match_id: params["match"]["game"],
-        player_id: player,
-        opponent_id: opponent,
-        winner: winner,
-        done: true
-      )
+      # send to worker
+      NewMatchWorker.perform_in(5.seconds, params["match"]["match"]["game"], params["match"]["match"]["spectateKey"], params["game"], params["match"].to_json)
     end
 
     render json: {}

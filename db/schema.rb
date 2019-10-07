@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_155640) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "wins", default: 0, null: false
+    t.index ["bnet_name"], name: "index_players_on_bnet_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

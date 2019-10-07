@@ -12,10 +12,13 @@ Rails.application.routes.draw do
   end
 
   scope '/api' do
-    post '/ping/matches', to: 'api#pingMatch'
+    post '/ping/:game/matches', to: 'api#pingMatch'
   end
 
   root to: "home#index"
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
