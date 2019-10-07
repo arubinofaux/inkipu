@@ -26,7 +26,10 @@ class ApiController < ApplicationController
         if bplayer.blank?
           bplayer = Player.create!(name: p[:name].split("#")[0], bnet_name: p[:name])
         end
-        winner = bplayer.id if p[:status] == "WON"
+        if p[:status] == "WON"
+          winner = bplayer.id
+          bplayer.update(wins: bplayer.wins + 1)
+        end
         player = bplayer.id if p[:position] == "1"
         opponent = bplayer.id if p[:position] == "2"
       end
