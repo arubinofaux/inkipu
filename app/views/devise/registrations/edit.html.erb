@@ -1,47 +1,7 @@
 <div class="row">
-  <div class="col-sm-12 col-lg-6">
+  <div class="col-sm-12 col-lg-12">
     <h2>Account Details</h2>
     
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-      
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-      <div class="field">
-        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "current-password" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Update" %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="col-sm-12 col-lg-6">
-    <h2>Player Details</h2>
-
     <div class="field">
       <label for="user_email">Account Name</label><br>
       <input type="text" value="<%= current_user.player.name %>" disabled>
