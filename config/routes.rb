@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   resources :matches
-  resources :players
+
+  get "/players", to: "players#index", as: :all_players
+  get "/players/:username", to: "players#show", as: :get_player
   
   devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks => "callbacks"}
   devise_scope :user do

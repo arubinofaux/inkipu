@@ -16,8 +16,8 @@
         <% @matches.each do |match| %>
           <tr>
             <td><%= match.game %></td>
-            <td><%= link_to match.player.bnet_name, player_path(match.player.id) %></td>
-            <td><%= link_to match.opponent.bnet_name, player_path(match.opponent.id) %></td>
+            <td><%= link_to match.player.bnet_name, get_player_path(match.player.name) %></td>
+            <td><%= link_to match.opponent.bnet_name, get_player_path(match.opponent.name) %></td>
             <td><%= match.created_at %></td>
           </tr>
         <% end %>

@@ -14,7 +14,7 @@
       <tbody>
         <% @players.each do |player| %>
           <tr>
-            <td><%= link_to player.bnet_name, player %></td>
+            <td><%= link_to player.bnet_name, get_player_path(player.name) %></td>
             <td><%= player.winner_matches.count %> - <%= playerWins(player.id).count %></td>
             <td><%= findMatches(player.id).count %></td>
           </tr>
