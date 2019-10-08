@@ -1,3 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-12">
+    <h1><%= @player.bnet_name %></h1>
+    <hr>
 
-<%= link_to 'Back', players_path %>
+    <h3>Matches History</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Result</th>
+          <th>Challenger</th>
+          <th>Opponent</th>
+          <th>Completed At</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% findMatches(@player.id).each do |match| %>
+          <tr>
+            <td><%= match.game %></td>
+            <% if match.winner_id == @player.id %>
+              <td>Won</td>
+            <% else %> 
+              <td>Lost</td>
+            <% end %>            
+            <td><%= link_to match.player.bnet_name, player_path(match.player.id) %></td>
+            <td><%= link_to match.opponent.bnet_name, player_path(match.opponent.id) %></td>
+            <td><%= match.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
