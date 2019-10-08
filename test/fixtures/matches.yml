@@ -11,3 +11,18 @@ two:
   player_id: 1
   opponent_id: 1
   winner: 1
+
+# == Schema Information
+#
+# Table name: matches
+#
+#  id            :bigint           not null, primary key
+#  done          :boolean          default(FALSE), not null
+#  game          :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  bnet_match_id :string
+#  opponent_id   :bigint
+#  player_id     :bigint
+#  winner_id     :bigint
+#
