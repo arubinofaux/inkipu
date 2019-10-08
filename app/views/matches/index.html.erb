@@ -5,22 +5,20 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Bnet match</th>
-          <th>Player</th>
+          <th>Game</th>
+          <th>Challenger</th>
           <th>Opponent</th>
-          <th>Winner</th>
-          <th colspan="3"></th>
+          <th>Completed At</th>
         </tr>
       </thead>
 
       <tbody>
         <% @matches.each do |match| %>
           <tr>
-            <td><%= match.bnet_match_id %></td>
-            <td><%= match.player.bnet_name %></td>
-            <td><%= match.opponent.bnet_name %></td>
-            <td><%= match.winner %></td>
-            <td><%= link_to 'Show', match %></td>
+            <td><%= match.game %></td>
+            <td><%= link_to match.player.bnet_name, player_path(match.player.id) %></td>
+            <td><%= link_to match.opponent.bnet_name, player_path(match.opponent.id) %></td>
+            <td><%= match.created_at %></td>
           </tr>
         <% end %>
       </tbody>

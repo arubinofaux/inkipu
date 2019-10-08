@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 2019_10_07_155640) do
 
   create_table "matches", force: :cascade do |t|
     t.string "bnet_match_id"
-    t.integer "player_id"
-    t.integer "opponent_id"
-    t.integer "winner"
+    t.bigint "player_id"
+    t.bigint "opponent_id"
+    t.bigint "winner_id"
+    t.string "game"
     t.boolean "done", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -28,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_155640) do
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "bnet_name"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "wins", default: 0, null: false
