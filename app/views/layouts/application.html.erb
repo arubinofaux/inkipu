@@ -8,56 +8,52 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,,500,600,700" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <%= link_to 'InnKeepBattles', root_url, class: 'navbar-brand'%>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsHeader" aria-controls="navbarsHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <%= link_to 'InnKeepBattles', root_url, class: 'navbar-brand'%>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span> Menu
+	      </button>
 
-      <div class="collapse navbar-collapse" id="navbarsHeader">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <%= link_to 'Home', root_url, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Matches', matches_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Players', all_players_path, class: 'nav-link' %>
-          </li>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item">
+              <%= link_to 'Home', root_url, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Matches', matches_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Players', all_players_path, class: 'nav-link' %>
+            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownUserActions" data-toggle="dropdown"><%= current_user.player.bnet_name %></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserActions">
+                  <%= link_to 'View Profile', get_player_path(current_user.player.name), class: 'dropdown-item' %>
+                  <%= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item' %>
+                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+                </div>
+              </li>
+            <% else %>
+              <li class="nav-item cta">
+                <%= link_to login_path, class: 'nav-link' do %>
+                  <span>Login / Sign Up</span>
+                <% end%>
+              </li>
+            <% end %>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
 
-          <% if user_signed_in? %>
-            
-          <% end %>
-        </ul>        
-        <ul class="navbar-nav">
-          <% if user_signed_in? %>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownUserActions" data-toggle="dropdown"><%= current_user.player.bnet_name %></a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserActions">
-                <%= link_to 'View Profile', get_player_path(current_user.player.name), class: 'dropdown-item' %>
-                <%= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item' %>
-                <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-              </div>
-            </li>
-          <% else %>
-            <li class="nav-item text-nowrap">
-              <%= link_to 'Login', login_path, class: 'nav-link' %>  
-            </li>
-            <li class="nav-item text-nowrap">
-              <%= link_to 'Signup', signup_path, class: 'nav-link' %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container">
+    <div class="container main-main">
       <% flash.each do |key, value| %>
         <div class="<%= flash_class(key) %>">
           <%= value %>
