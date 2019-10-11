@@ -1,25 +1,27 @@
-<div class="row">
-  <div class="col-12">
-    <h2>Players</h2>
+<div class="container main-main">
+  <div class="row">
+    <div class="col-12">
+      <h2>Players</h2>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Player</th>
-          <th>Win / Lose</th>
-          <th>Matches Played</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @players.each do |player| %>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= link_to player.bnet_name, get_player_path(player.name) %></td>
-            <td><%= player.winner_matches.count %> - <%= playerWins(player.id).count %></td>
-            <td><%= findMatches(player.id).count %></td>
+            <th>Player</th>
+            <th>Win / Lose</th>
+            <th>Matches Played</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @players.each do |player| %>
+            <tr>
+              <td><%= link_to player.bnet_name, get_player_path(player.name) %></td>
+              <td><%= player.winner_matches.count %> - <%= playerWins(player.id).count %></td>
+              <td><%= findMatches(player.id).count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

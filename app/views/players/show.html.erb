@@ -1,35 +1,37 @@
-<div class="row">
-  <div class="col-12">
-    <h1><%= @player.bnet_name %></h1>
-    <hr>
+<div class="container main-main">
+  <div class="row">
+    <div class="col-12">
+      <h1><%= @player.bnet_name %></h1>
+      <hr>
 
-    <h3>Matches History</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Game</th>
-          <th>Result</th>
-          <th>Challenger</th>
-          <th>Opponent</th>
-          <th>Completed At</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% findMatches(@player.id).each do |match| %>
+      <h3>Matches History</h3>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= match.game %></td>
-            <% if match.winner_id == @player.id %>
-              <td>Won</td>
-            <% else %> 
-              <td>Lost</td>
-            <% end %>            
-            <td><%= link_to match.player.bnet_name, get_player_path(match.player.name) %></td>
-            <td><%= link_to match.opponent.bnet_name, get_player_path(match.opponent.name) %></td>
-            <td><%= match.created_at %></td>
+            <th>Game</th>
+            <th>Result</th>
+            <th>Challenger</th>
+            <th>Opponent</th>
+            <th>Completed At</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% findMatches(@player.id).each do |match| %>
+            <tr>
+              <td><%= match.game %></td>
+              <% if match.winner_id == @player.id %>
+                <td>Won</td>
+              <% else %> 
+                <td>Lost</td>
+              <% end %>            
+              <td><%= link_to match.player.bnet_name, get_player_path(match.player.name) %></td>
+              <td><%= link_to match.opponent.bnet_name, get_player_path(match.opponent.name) %></td>
+              <td><%= match.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

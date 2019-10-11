@@ -19,7 +19,6 @@ import 'bootstrap'
 // const imagePath = (name) => images(name, true)
 
 $(document).on('turbolinks:load', function() {
-  console.log($(window).height())
 	var fullHeight = function() {
 
 		$('.js-fullheight').css('height', $(window).height());
