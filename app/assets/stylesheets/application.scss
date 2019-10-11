@@ -26,6 +26,12 @@ $secondary: #38d39f;
     transition:         all $transition ease;
 }
 
+.btn.btn-primary {
+	background: #6927ff;
+	border: 1px solid #6927ff;
+	color: #fff;
+}
+
 .main-main {
   padding-top: 6rem;
 }
@@ -557,3 +563,72 @@ body {
 	.heading-white p {
 		color: rgba(0, 0, 0, 0.7);
 		margin-bottom: 0; }
+
+.site-footer {
+			font-size: 16px;
+			padding: 5em 0;
+			padding-bottom: 3em;
+			background: #421b9b;
+			.site-footer-logo {
+				text-transform: uppercase;
+				letter-spacing: .1em;
+			}
+			.site-footer-widget {
+				&.bg-primary{
+					background: lighten(#421b9b,10%) !important;
+				}
+				h2 {
+					font-weight: normal;
+					color: $white;
+					margin-bottom: 40px;
+					font-size: 20px;
+					font-weight: 700;
+				}
+				ul{
+					li{
+						a{
+							span{
+								color: $white;
+							}
+						}
+					}
+				}
+				.btn-primary{
+					// background: $white !important;
+					border: 1px solid transparent;
+					
+					&:hover{
+						background: $white;
+						border: 1px solid $white !important;
+					}
+				}
+			}
+			p {
+				color: rgba($white, .7);
+			}
+			a {
+				color: rgba($white, .7);
+				&:hover {
+					color: $white;
+				}
+			}
+			.ftco-heading-2 {
+				font-size: 17px;
+				font-weight: 400;
+				color: $black;
+			}
+			.price{
+				.subheading{
+					color: rgba(255,255,255,.8);
+				}
+				h3{
+					font-size: 40px;
+					color: $white;
+					font-weight: 700;
+					span{
+						font-size: 14px;
+						font-weight: 400;
+					}
+				}
+			}
+		}
