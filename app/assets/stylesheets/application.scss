@@ -26,10 +26,6 @@ $secondary: #38d39f;
     transition:         all $transition ease;
 }
 
-.main-main {
-  padding-top: 4rem;
-}
-
 body {
 	font-family: $font-primary;
   background: $white;
@@ -47,7 +43,7 @@ body {
 
 .ftco-navbar-light {
 	background: transparent!important;
-	// position: absolute;
+	position: absolute;
 	top: 15px;
 	left: 0;
 	right: 0;

@@ -18,8 +18,19 @@ import 'bootstrap'
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-(function($) {
-  // scroll
+$(document).on('turbolinks:load', function() {
+  console.log($(window).height())
+	var fullHeight = function() {
+
+		$('.js-fullheight').css('height', $(window).height());
+		$(window).resize(function(){
+			$('.js-fullheight').css('height', $(window).height());
+		});
+
+	};
+	fullHeight();
+
+	// scroll
 	var scrollWindow = function() {
 		$(window).scroll(function(){
 			var $w = $(this),
@@ -58,5 +69,8 @@ import 'bootstrap'
 		});
 	};
   scrollWindow();
+});
+
+(function($) {
   
 })(jQuery);
