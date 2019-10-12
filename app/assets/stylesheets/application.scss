@@ -463,16 +463,16 @@ body {
 .bnet-search {
 	margin-bottom: 67px;
 }
-		.domain-form{
+		.bname-form{
 			width: 100%;
 			display: block;
-			.domain-name{
+			.bname-name{
 				width: calc(100% - 179px);
 				@include media-breakpoint-down(sm){
 					width: 100%;
 				}
 			}
-			.domain-select{
+			.bname-select{
 				width: 235px;
 				@include media-breakpoint-down(sm){
 					width: 100%;
@@ -489,6 +489,7 @@ body {
 				}
 				.form-control{
 					height: 60px !important;
+					border-radius: unset;
 				}
 				input, select{
 					appearance: none;
@@ -534,7 +535,7 @@ body {
 				position: relative;
 				width: 80px;
 			}
-			.search-domain{
+			.search-bname{
 				width: calc(100% - 4px);
 				@include media-breakpoint-down(md){
 					width: calc(100% - 4px);
